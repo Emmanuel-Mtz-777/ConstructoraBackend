@@ -1,0 +1,39 @@
+# Node.js
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencias locales de pnpm
+.pnpm/
+
+# Entornos
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+*.log.*
+/log
+
+# Directorios de salida
+dist/
+build/
+coverage/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Macros de sistema
+*.swp
+*~
