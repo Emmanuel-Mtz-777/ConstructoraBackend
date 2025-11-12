@@ -8,11 +8,13 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-
-app.use('/api/users', userRoutes);
-app.use('/api/projects', productRoutes);
-app.use('/api/vehicles', vehicleRoutes);
-app.use('/api/access', AccessRouter);
+router.get('/', (req, res) => {
+    res.send('Projects endpoint works');
+});
+app.use('/users', userRoutes);
+app.use('/projects', productRoutes);
+app.use('/vehicles', vehicleRoutes);
+app.use('/access', AccessRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on  http://localhost:${process.env.PORT}`);
