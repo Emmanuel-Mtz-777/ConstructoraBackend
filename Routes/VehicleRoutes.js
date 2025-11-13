@@ -1,5 +1,6 @@
 import { VehicleController } from "../Controllers/VehicleController.js";
 import { Router } from "express";
+import { verifyToken } from "../Middlewares/Token.js";
 
 const router = Router();
 
