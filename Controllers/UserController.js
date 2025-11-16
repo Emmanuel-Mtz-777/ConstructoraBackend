@@ -1,14 +1,16 @@
-import { UserModel } from "../Models/UserModel.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
 export class UserController {
-    static async createUser(req, res) {
+    constructor({ UserModel }) {
+        this.userModel = UserModel;
+    }
+
+   createUser=async (req, res) => {
         try {
         const userData = req.body;
-        const newUser = await UserModel.createUser(userData);
-
+        const newUser = await this.userModel.createUser(userData);
         if (!newUser) throw new Error("Error creating user");
 
         res.status(201).json({
@@ -21,10 +23,10 @@ export class UserController {
         }
     }
 
-    static async loginUser(req, res) {
+    loginUser=async (req, res) => {
         try {
         const userData = req.body;
-        const user = await UserModel.loginUser(userData);
+        const user = await this.userModel.loginUser(userData);
 
         if (!user) {
             return res.status(401).json({ message: "Credenciales inválidas" });

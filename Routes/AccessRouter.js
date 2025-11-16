@@ -1,12 +1,15 @@
 import { AccessController } from "../Controllers/AccessController.js";
 import { Router } from "express";
-import { verifyToken } from "../Middlewares/Token.js";
 
-const router = Router();
+export const createAccessRouter = ({AccessModel}) => {
 
-router.post('/', AccessController.createAccess);
-router.get('/', AccessController.getAccesses);
-router.get('/user/:userId', AccessController.getAccessesByUser);
-router.get('/resource/:resource/:resourceId', AccessController.getAccessesByResource);
+    const accessRouter = Router();
+    const accessController = new AccessController({AccessModel});
 
-export default router;
+    accessRouter.post('/', accessController.createAccess);
+    accessRouter.get('/', accessController.getAccesses);
+    accessRouter.get('/user/:userId', accessController.getAccessesByUser);
+    accessRouter.get('/resource/:resource/:resourceId', accessController.getAccessesByResource);
+
+    return accessRouter;
+}

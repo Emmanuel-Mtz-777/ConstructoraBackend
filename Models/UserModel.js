@@ -3,7 +3,7 @@ import { Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 const UserSchema = new Schema({
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     name: { type: String, required: true },
     rol: {
@@ -26,6 +26,10 @@ export const User = MongoDB.model('User', UserSchema);
 
 export class UserModel {
     static async createUser(userData) {
+        const existingUser = await User.findOne({ email: userData.email });
+        if (existingUser) {
+            throw new Error('Email already in use');
+        }
         const hashedPassword = await bcrypt.hash(userData.password, 10);
         userData.password = hashedPassword;
         return await User.create(userData);

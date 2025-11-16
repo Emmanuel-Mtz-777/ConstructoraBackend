@@ -1,25 +1,26 @@
-import { VehicleModel } from "../Models/VehicleModel.js";
-
 export class VehicleController {
-    static async createVehicle(req, res) {
+    constructor({VehicleModel}) {
+        this.vehicleModel = VehicleModel;
+    }
+    createVehicle=async (req, res) => {
         try {
-            const vehicle = await VehicleModel.createVehicle(req.body);
+            const vehicle = await this.vehicleModel.createVehicle(req.body);
             res.status(201).json(vehicle);
         } catch (error) {
             res.status(500).json({ error: "Error creating vehicle" });
         }
     }   
-    static async getVehicles(req, res) {
+    getVehicles=async (req, res) => {
         try {
-            const vehicles = await VehicleModel.getVehicles();
+            const vehicles = await this.vehicleModel.getVehicles();
             res.status(200).json(vehicles);
         } catch (error) {
             res.status(500).json({ error: "Error fetching vehicles" });
         }
     }
-    static async getVehicleById(req, res) {
+    getVehicleById=async (req, res) => {
         try {
-            const vehicle = await VehicleModel.getVehicleById(req.params.id);
+            const vehicle = await this.vehicleModel.getVehicleById(req.params.id);
             if (!vehicle) {
                 return res.status(404).json({ error: 'Vehicle not found' });
             }
@@ -28,9 +29,9 @@ export class VehicleController {
             res.status(500).json({ error: "Error fetching vehicle" });
         }
     }
-    static async updateVehicle(req, res) {
+    updateVehicle=async (req, res) => {
         try {
-            const vehicle = await VehicleModel.updateVehicle(req.params.id, req.body);
+            const vehicle = await this.vehicleModel.updateVehicle(req.params.id, req.body);
             if (!vehicle) {
                 return res.status(404).json({ error: 'Vehicle not found' });
             }
@@ -39,9 +40,9 @@ export class VehicleController {
             res.status(500).json({ error: "Error updating vehicle" });
         }  
     }
-    static async deleteVehicle(req, res) {
+    deleteVehicle=async (req, res) => {
         try { 
-            const vehicle = await VehicleModel.deleteVehicle(req.params.id);
+            const vehicle = await this.vehicleModel.deleteVehicle(req.params.id);
             if (!vehicle) {
                 return res.status(404).json({ error: 'Vehicle not found' });
             }
