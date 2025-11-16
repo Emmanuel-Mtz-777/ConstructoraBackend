@@ -1,13 +1,15 @@
 import { Router } from "express";
 import { ProjectController } from "../Controllers/ProjectController.js";
 
+export const createProjectRouter = ({ProjectModel}) => {
+    const projectRouter = Router();
+    const projectController = new ProjectController({ProjectModel});
 
-const router = Router();
+    projectRouter.post('/', projectController.createProject);
+    projectRouter.get('/', projectController.getProjects);
+    projectRouter.get('/:name', projectController.getProjectByName);
+    projectRouter.put('/:id', projectController.updateProject);
+    projectRouter.delete('/:id', projectController.deleteProject);
 
-router.post('/', ProjectController.createProject);
-router.get('/', ProjectController.getProjects);
-router.get('/:name', ProjectController.getProjectByName);
-router.put('/:id', ProjectController.updateProject);
-router.delete('/:id', ProjectController.deleteProject);
-
-export default router;
+    return projectRouter;
+}
