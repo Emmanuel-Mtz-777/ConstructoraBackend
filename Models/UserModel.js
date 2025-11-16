@@ -1,4 +1,4 @@
-import MongoDB from '../Contracts/Mongo.js';
+import MongoDB from '../Database/Mongo.js';
 import { Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 

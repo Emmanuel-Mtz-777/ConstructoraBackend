@@ -1,4 +1,4 @@
-import Mongo from '../Contracts/Mongo.js';
+import Mongo from '../Database/Mongo.js';
 import { Schema } from 'mongoose';
 
 const AccessSchema = new Schema({
