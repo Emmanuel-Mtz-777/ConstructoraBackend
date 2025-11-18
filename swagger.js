@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const PORT = process.env.PORT ?? 3000;
-const HOST = process.env.HOST ?? 'localhost';
+
+const HOST = 'https://constructora-backend-5b81827b25c5.herokuapp.com';
 
 const doc = {
   info: {
@@ -13,8 +13,8 @@ const doc = {
     description: 'Documentación generada automáticamente con swagger-autogen',
   },
 
-  host: `${HOST}:${PORT}`,
-  schemes: ['http'],
+  host: `${HOST}`,
+  schemes: ['https'],
 
   tags: [
     { name: "Users", description: "Operaciones relacionadas con usuarios" },
