@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from 'dotenv';
 import cookieParser from "cookie-parser";
-import swaggerUi from "swagger-ui-express";
 import fs from "fs";
 
 import { AccessModel } from "./Models/AccessModel.js";
@@ -19,7 +18,6 @@ import { generalRateLimit } from "./Middlewares/RateLimit.js";
 
 dotenv.config();
 const Port = process.env.PORT ?? 3000;
-const swaggerFile = JSON.parse(fs.readFileSync("./swagger-output.json", "utf8"));
 const app = express();
 
 app.use(express.json());
