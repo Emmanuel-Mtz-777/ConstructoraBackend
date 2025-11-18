@@ -7,21 +7,8 @@ export const createUserRouter = ({ UserModel }) => {
 
     const userController = new UserController({ UserModel });
 
-    userRouter.post('/register',
-        /*
-            #swagger.tags = ['Users']
-            #swagger.description = 'Registrar un nuevo usuario'
-        */
-        userController.createUser
-    );
-
-    userRouter.post('/login',loginRateLimit,
-        /*
-            #swagger.tags = ['Users']
-            #swagger.description = 'Iniciar sesión de usuario'
-        */
-        userController.loginUser
-    );
+    userRouter.post('/register',userController.createUser);
+    userRouter.post('/login',loginRateLimit,userController.loginUser);
 
     return userRouter;
 };
