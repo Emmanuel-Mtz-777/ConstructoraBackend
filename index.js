@@ -26,7 +26,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/',(req,res)=>{
+  return res.send('Welcome to the API');
+});
 
 app.use('/users', createUserRouter({ UserModel }));
 app.use(generalRateLimit);
